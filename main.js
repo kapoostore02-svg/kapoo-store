@@ -1,6 +1,33 @@
 document.addEventListener("DOMContentLoaded", () => {
   const buttons = document.querySelectorAll(".category-btn");
 
+  // مراقبة ظهور أقسام الصفحة الرئيسية في منتصف الشاشة
+  if ("IntersectionObserver" in window && buttons.length) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const btn = entry.target;
+          if (entry.isIntersecting && entry.intersectionRatio >= 0.6) {
+            btn.classList.add("in-view");
+          } else {
+            btn.classList.remove("in-view");
+          }
+        });
+      },
+      {
+        root: null,
+        threshold: [0.6],
+      }
+    );
+
+    buttons.forEach((btn) => observer.observe(btn));
+  } else {
+    // في حال عدم دعم المتصفح لـ IntersectionObserver اجعل أول قسم نشطاً
+    if (buttons[0]) {
+      buttons[0].classList.add("in-view");
+    }
+  }
+
   // شاشة ترحيب في البداية مع كتابة حرف حرف
   const introOverlay = document.querySelector(".intro-overlay");
   const introTextEl = document.querySelector(".intro-text");
@@ -663,7 +690,7 @@ document.addEventListener("DOMContentLoaded", () => {
           </div>
         </div>
         <div class="pubg-banner">
-          <img src="/1481606_0.jpg" alt="صورة ببجي" class="pubg-banner-img" />
+          <img src="./1481606_0.jpg" alt="صورة ببجي" class="pubg-banner-img" />
         </div>
         <div class="pubg-typing-wrapper">
           <span class="pubg-typing-text"></span>
@@ -933,7 +960,7 @@ document.addEventListener("DOMContentLoaded", () => {
           </div>
         </div>
         <div class="pubg-banner">
-          <img src="/كروت فمه.png" alt="لوجو قسم كروت فكه" class="pubg-banner-img" />
+          <img src="./كروت فمه.png" alt="لوجو قسم كروت فكه" class="pubg-banner-img" />
         </div>
         <div class="pubg-typing-wrapper">
           <span class="pubg-typing-text"></span>
@@ -1158,7 +1185,7 @@ document.addEventListener("DOMContentLoaded", () => {
           </div>
         </div>
         <div class="pubg-banner">
-          <img src="/تصميم.png" alt="شعار قسم التصميم" class="pubg-banner-img" />
+          <img src="./تصميم.png" alt="شعار قسم التصميم" class="pubg-banner-img" />
         </div>
         <div class="pubg-typing-wrapper">
           <span class="pubg-typing-text"></span>
@@ -1397,7 +1424,7 @@ document.addEventListener("DOMContentLoaded", () => {
           </div>
         </div>
         <div class="pubg-banner">
-          <img src="/generated-image-cf766f79-a536-400c-8bc7-647a7aecb55d.png" alt="شعار قسم طرق ثغرات" class="pubg-banner-img" />
+          <img src="./generated-image-cf766f79-a536-400c-8bc7-647a7aecb55d.png" alt="شعار قسم طرق ثغرات" class="pubg-banner-img" />
         </div>
         <div class="pubg-typing-wrapper">
           <span class="pubg-typing-text"></span>
@@ -1930,7 +1957,7 @@ document.addEventListener("DOMContentLoaded", () => {
           </div>
         </div>
         <div class="pubg-banner">
-          <img src="/483528c77a19be6735661c5f68a749ea.jpg" alt="صورة فري فاير" class="pubg-banner-img" />
+          <img src="./483528c77a19be6735661c5f68a749ea.jpg" alt="صورة فري فاير" class="pubg-banner-img" />
         </div>
         <div class="pubg-typing-wrapper">
           <span class="pubg-typing-text"></span>
@@ -2026,7 +2053,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const typingEl = wrapper.querySelector(".pubg-typing-text");
     if (typingEl) {
       const baseText =
-        "اهلا بم في عالم فري فاير وعالم الخصومات\nKAPOO STORE";
+        "اهلا بكم في عالم فري فاير وعالم الخصومات\nKAPOO STORE";
       const dotChar = ".";
       let index = 0;
       let isDeleting = false;
