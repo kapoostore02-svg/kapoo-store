@@ -414,6 +414,77 @@ body.app-ready .app-root {
   font-weight: 700;
 }
 
+/* Parallelogram label أعلى يمين الزر */
+.category-parallelogram {
+  position: absolute;
+  top: 10px;
+  inset-inline-end: 12px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.9);
+  border: 1px solid rgba(250, 204, 21, 0.9);
+  transform: skewX(-20deg) translateY(-10px);
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    opacity 0.25s ease-out,
+    transform 0.25s ease-out;
+  z-index: 2;
+}
+
+.category-parallelogram-text {
+  display: inline-block;
+  transform: skewX(20deg);
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #fefce8;
+  white-space: nowrap;
+}
+
+/* CTA "قم بالدخول الان" يظهر فقط عند كون الزر أمام المستخدم */
+.category-cta {
+  position: absolute;
+  inset-inline-end: 12px;
+  bottom: 10px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.9);
+  border: 1px solid rgba(148, 163, 184, 0.7);
+  font-size: 0.78rem;
+  color: #e5e7eb;
+  opacity: 0;
+  transform: translateX(12px);
+  pointer-events: none;
+  transition:
+    opacity 0.25s ease-out,
+    transform 0.25s ease-out;
+  z-index: 2;
+}
+
+.category-cta-text {
+  white-space: nowrap;
+}
+
+.category-cta-arrow {
+  display: inline-block;
+  font-size: 0.9rem;
+  animation: cta-arrow-move 0.9s ease-in-out infinite;
+}
+
+/* إظهار الشكل المتوازي الأضلاع والـ CTA فقط عندما يكون الزر في المنتصف تقريباً */
+.category-btn.in-view .category-parallelogram {
+  opacity: 1;
+  transform: skewX(-20deg) translateY(0);
+}
+
+.category-btn.in-view .category-cta {
+  opacity: 1;
+  transform: translateX(0);
+}
+
 /* إخفاء اللوجو والنص داخل أزرار الأقسام في الصفحة الرئيسية */
 .category-logo,
 .category-label {
@@ -423,35 +494,35 @@ body.app-ready .app-root {
 /* Individual category color themes */
 
 .category-pubg::before {
-  background-image: url("/1481606_0.jpg");
+  background-image: url("./1481606_0.jpg");
   background-size: cover;
   background-position: center;
   animation: none;
 }
 
 .category-freefire::before {
-  background-image: url("/483528c77a19be6735661c5f68a749ea.jpg");
+  background-image: url("./483528c77a19be6735661c5f68a749ea.jpg");
   background-size: cover;
   background-position: center;
   animation: none;
 }
 
 .category-charging::before {
-  background-image: url("/كروت فمه.png");
+  background-image: url("./كروت فمه.png");
   background-size: cover;
   background-position: center;
   animation: none;
 }
 
 .category-design::before {
-  background-image: url("/تصميم.png");
+  background-image: url("./تصميم.png");
   background-size: cover;
   background-position: center;
   animation: none;
 }
 
 .category-methods::before {
-  background-image: url("/generated-image-cf766f79-a536-400c-8bc7-647a7aecb55d.png");
+  background-image: url("./generated-image-cf766f79-a536-400c-8bc7-647a7aecb55d.png");
   background-size: cover;
   background-position: center;
   animation: none;
@@ -541,7 +612,7 @@ body.app-ready .app-root {
   height: 40px;
   border-radius: 999px;
   border: 2px solid #facc15;
-  background-image: url("/OIP.jpg");
+  background-image: url("./OIP.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -958,6 +1029,19 @@ body.app-ready .watermark-layer {
   }
   100% {
     transform: translateX(-12px);
+  }
+}
+
+/* حركة السهم داخل زر "قم بالدخول الان" */
+@keyframes cta-arrow-move {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(-4px);
+  }
+  100% {
+    transform: translateX(0);
   }
 }
 
